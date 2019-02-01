@@ -1,60 +1,60 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== 'production'
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: {
-    index:'./src/js/app.js'
+    index: "./src/js/app.js"
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, "public"),
     publicPath: "./",
     filename: "bundle.js",
-    chunkFilename: '[name].js'
+    chunkFilename: "[name].js"
   },
   module: {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader'
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader"
         ]
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
-        loader:"file-loader",
-        options:{
-          name:'[name].[ext]',
-          outputPath:'public/assets/images/'
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "public/assets/images/"
         }
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: "src/index.html"
     }),
     new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery'",
-        "window.$": "jquery"
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery'",
+      "window.$": "jquery"
     }),
     new MiniCssExtractPlugin({
-      filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
-      chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css'
-  }),
-  new webpack.HotModuleReplacementPlugin() // ny rad
-],
-devServer: {
-  hot: true,
-  contentBase: path.join(__dirname, 'public'),
-  publicPath: '/',
-  compress: true,
-  port: 3000
-}
+      filename: devMode ? "css/[name].css" : "css/[name].[hash].css",
+      chunkFilename: devMode ? "css/[id].css" : "css/[id].[hash].css"
+    }),
+    new webpack.HotModuleReplacementPlugin() // ny rad
+  ],
+  devServer: {
+    hot: true,
+    contentBase: path.join(__dirname, "public"),
+    publicPath: "/",
+    compress: true,
+    port: 3000
+  }
 };

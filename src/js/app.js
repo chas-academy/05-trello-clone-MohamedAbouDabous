@@ -120,6 +120,12 @@ const jtrello = (function($) {
     console.log("This should delete the card you clicked on");
   }
 
+
+  function dragAndDrop() {
+    $(".list-cards").sortable({
+      connectWith: ".list-cards"
+    });
+  }
   // Metod för att rita ut element i DOM:en
   function render() {}
 
@@ -144,6 +150,6 @@ const jtrello = (function($) {
 
 //usage
 $("document").ready(function() {
-  $(".card").draggable();
   jtrello.init();
 });
+
