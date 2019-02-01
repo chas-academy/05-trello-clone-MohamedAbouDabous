@@ -67,7 +67,7 @@ const jtrello = (function($) {
     let listDueDateInput = $(this).find("input.datepicker");
     let newListTitle = listTitleInput.val();
     let newListDueDate = listDueDateInput.val();
-
+    
     $('#list-creation-dialog').dialog("close");
     
     listTitleInput.val("");
@@ -90,7 +90,8 @@ const jtrello = (function($) {
             </ul>
         </div>
       </div>
-     `);
+     `)
+     dragAndDrop();
   }
 
   function deleteList() {
@@ -101,7 +102,7 @@ const jtrello = (function($) {
   /* =========== Metoder för att hantera kort i listor nedan =========== */
   function createCard(event) {
     event.preventDefault();
-    console.log("This should create a new card");
+
     let cardTitleInput = $(this).find("input");
     let newCardTitle = cardTitleInput.val();
 
@@ -117,7 +118,6 @@ const jtrello = (function($) {
 
   function deleteCard() {
     $(this)("input").remove()
-    console.log("This should delete the card you clicked on");
   }
 
 
@@ -125,6 +125,11 @@ const jtrello = (function($) {
     $(".list-cards").sortable({
       connectWith: ".list-cards"
     });
+
+    $(".column").sortable( {
+      connectWith: ".column"
+    });
+  
   }
   // Metod för att rita ut element i DOM:en
   function render() {}
@@ -138,7 +143,7 @@ const jtrello = (function($) {
     captureDOMEls();
     createTabs();
     createDialogs();
-
+    dragAndDrop();
     bindEvents();
   }
 
