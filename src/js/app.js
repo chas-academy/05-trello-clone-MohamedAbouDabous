@@ -117,7 +117,7 @@ const jtrello = (function($) {
   }
 
   function deleteCard() {
-    $(this)("input").remove()
+    $(this).closest(".card").remove()
   }
 
 
@@ -126,8 +126,8 @@ const jtrello = (function($) {
       connectWith: ".list-cards"
     });
 
-    $(".column").sortable( {
-      connectWith: ".column"
+    $(".board").sortable( {
+      
     });
   
   }
