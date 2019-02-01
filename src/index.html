@@ -74,8 +74,18 @@
     </div>
 
     <div id="list-creation-dialog" title="Create new list" style="height: 40px">
-        <form> 
-            <input type="text" name="title" placeholder="List title" />
+        <form class="new-list" id="tabs">
+            <ul>
+              <li><a href="#fragment-1">List title</a></li>
+              <li><a href="#fragment-2">List due date</a></li>
+            </ul>
+            <div id="fragment-1">
+                <input type="text" name="title" placeholder="List title" />
+                <button class="button primary" type="submit">Save</button>
+            </div>
+            <div id="fragment-2">
+                <input class="datepicker" type="text" name="due" placeholder="Date" /> 
+            </div>
         </form>
     </div>
 </body>

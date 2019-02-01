@@ -177,6 +177,11 @@ input {
   flex: 0 0 160px;
 }
 
+.button.primary {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
 .ui-sortable-placeholder {
   display: block;
   background-color: rgba(0, 0, 0, 0.2);

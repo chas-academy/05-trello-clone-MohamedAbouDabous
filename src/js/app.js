@@ -1,7 +1,8 @@
-import $ from 'jquery';
+import $ from "jquery";
 
-// require('webpack-jquery-ui');
-import '../css/styles.css';
+require("webpack-jquery-ui");
+import 'jquery-ui/themes/base/all.css';
+import "../css/styles.css";
 
 /**
  * jtrello
@@ -10,7 +11,7 @@ import '../css/styles.css';
 
 // Här tillämpar vi mönstret reavealing module pattern:
 // Mer information om det mönstret här: https://bit.ly/1nt5vXP
-const jtrello = (function() {
+const jtrello = (function($) {
   "use strict"; // https://lucybain.com/blog/2014/js-use-strict/
 
   // Referens internt i modulen för DOM element
@@ -18,51 +19,104 @@ const jtrello = (function() {
 
   /* =================== Privata metoder nedan ================= */
   function captureDOMEls() {
-    DOM.$board = $('.board');
-    DOM.$listDialog = $('#list-creation-dialog');
-    DOM.$columns = $('.column');
-    DOM.$lists = $('.list');
-    DOM.$cards = $('.card');
-    
-    DOM.$newListButton = $('button#new-list');
-    DOM.$deleteListButton = $('.list-header > button.delete');
+    DOM.$board = $(".board");
+    DOM.$listDialog = $("#list-creation-dialog");
+    DOM.$columns = $(".column");
+    DOM.$lists = $(".list");
+    DOM.$cards = $(".card");
 
-    DOM.$newCardForm = $('form.new-card');
-    DOM.$deleteCardButton = $('.card > button.delete');
+    DOM.$newListButton = $("button#new-list");
+    DOM.$deleteListButton = $(".list-header > button.delete");
+
+    DOM.$newCardForm = $("form.new-card");
+    DOM.$deleteCardButton = $(".card > button.delete");
   }
 
-  function createTabs() {}
-  function createDialogs() {}
+  function createTabs() {
+    $('#tabs').tabs();
+  }
+
+  function createDialogs() {
+    $("#list-creation-dialog").dialog({autoOpen: false});
+  }
 
   /*
-  *  Denna metod kommer nyttja variabeln DOM för att binda eventlyssnare till
-  *  createList, deleteList, createCard och deleteCard etc.
-  */
+   *  Denna metod kommer nyttja variabeln DOM för att binda eventlyssnare till
+   *  createList, deleteList, createCard och deleteCard etc.
+   */
   function bindEvents() {
-    DOM.$newListButton.on('click', createList);
-    DOM.$deleteListButton.on('click', deleteList);
+    DOM.$newListButton.on("click", toggleDialog);
+    DOM.$board.on("click", ".list-header > button.delete", deleteList);
+    DOM.$listDialog.on("submit", "form.new-list", createList);
 
-    DOM.$newCardForm.on('submit', createCard);
-    DOM.$deleteCardButton.on('click', deleteCard);
+    DOM.$board.on("submit", "form.new-card", createCard);
+    DOM.$board.on("click", ".card > button.delete", deleteCard);
+
+    // DOM.$createDialogs.on("click", cards);
+  }
+
+  function toggleDialog() {
+    $("#list-creation-dialog").dialog("open");
+    $('#list-creation-dialog input.datepicker').datepicker();
   }
 
   /* ============== Metoder för att hantera listor nedan ============== */
   function createList() {
     event.preventDefault();
-    console.log("This should create a new list");
+    let listTitleInput = $(this).find("input");
+    let listDueDateInput = $(this).find("input.datepicker");
+    let newListTitle = listTitleInput.val();
+    let newListDueDate = listDueDateInput.val();
+
+    $('#list-creation-dialog').dialog("close");
+    
+    listTitleInput.val("");
+    listDueDateInput.val("");
+
+    $('.column:last').before(`
+    <div class="column">
+      <div class="list">
+            <div class="list-header">
+                ${newListTitle} | <small>${newListDueDate}</small>
+                <button class="button delete">X</button>
+            </div>
+            <ul class="list-cards">
+                <li class="add-new">
+                    <form class="new-card" action="index.html">
+                        <input type="text" name="title" placeholder="Please name the card">
+                        <button class="button add">Add new card</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+      </div>
+     `);
   }
 
   function deleteList() {
     console.log("This should delete the list you clicked on");
+    $(this).closest('.column').remove()
   }
 
   /* =========== Metoder för att hantera kort i listor nedan =========== */
   function createCard(event) {
     event.preventDefault();
     console.log("This should create a new card");
+    let cardTitleInput = $(this).find("input");
+    let newCardTitle = cardTitleInput.val();
+
+    $(this).parent().before(`
+        <li class="card">
+            ${newCardTitle}
+            <button class="button delete">X</button>
+        </li>
+      `);
+
+    cardTitleInput.val("");
   }
 
   function deleteCard() {
+    $(this)("input").remove()
     console.log("This should delete the card you clicked on");
   }
 
@@ -73,7 +127,7 @@ const jtrello = (function() {
 
   // Init metod som körs först
   function init() {
-    console.log(':::: Initializing JTrello ::::');
+    console.log(":::: Initializing JTrello ::::");
     // Förslag på privata metoder
     captureDOMEls();
     createTabs();
@@ -86,9 +140,10 @@ const jtrello = (function() {
   return {
     init: init
   };
-})();
+})($);
 
 //usage
 $("document").ready(function() {
+  $(".card").draggable();
   jtrello.init();
 });
