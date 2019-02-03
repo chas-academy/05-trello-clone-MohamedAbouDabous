@@ -3,6 +3,7 @@ import $ from "jquery";
 require("webpack-jquery-ui");
 import 'jquery-ui/themes/base/all.css';
 import "../css/styles.css";
+import { create, Domain } from "domain";
 
 /**
  * jtrello
@@ -24,6 +25,7 @@ const jtrello = (function($) {
     DOM.$columns = $(".column");
     DOM.$lists = $(".list");
     DOM.$cards = $(".card");
+    DOM.$cardDialog = $(".card-creation-dialog")
 
     DOM.$newListButton = $("button#new-list");
     DOM.$deleteListButton = $(".list-header > button.delete");
@@ -51,6 +53,7 @@ const jtrello = (function($) {
 
     DOM.$board.on("submit", "form.new-card", createCard);
     DOM.$board.on("click", ".card > button.delete", deleteCard);
+    DOM.$listDialog.on("click", "form.new.card", createCard);
 
     // DOM.$createDialogs.on("click", cards);
   }
@@ -69,7 +72,7 @@ const jtrello = (function($) {
     let newListDueDate = listDueDateInput.val();
     
     $('#list-creation-dialog').dialog("close");
-    
+
     listTitleInput.val("");
     listDueDateInput.val("");
 
@@ -92,20 +95,24 @@ const jtrello = (function($) {
       </div>
      `)
      dragAndDrop();
+     
   }
 
   function deleteList() {
-    console.log("This should delete the list you clicked on");
-    $(this).closest('.column').remove()
+    $(this).closest('.column').fadeOut()
   }
 
   /* =========== Metoder för att hantera kort i listor nedan =========== */
+  function openCardDialog() {
+
+  }
+
   function createCard(event) {
     event.preventDefault();
 
     let cardTitleInput = $(this).find("input");
     let newCardTitle = cardTitleInput.val();
-
+  
     $(this).parent().before(`
         <li class="card">
             ${newCardTitle}
@@ -117,18 +124,15 @@ const jtrello = (function($) {
   }
 
   function deleteCard() {
-    $(this).closest(".card").remove()
+    $(this).closest(".card").toggle("explode");
   }
-
 
   function dragAndDrop() {
     $(".list-cards").sortable({
       connectWith: ".list-cards"
     });
 
-    $(".board").sortable( {
-      
-    });
+    $(".board").sortable();
   
   }
   // Metod för att rita ut element i DOM:en
