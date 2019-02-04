@@ -1,3 +1,14 @@
+
+AND THE LINK IIIIIIIS:
+
+trello.mohamedaboudabous.chas.academy
+
+
+
+
+
+
+
 # Trello clone with jQuery, jQuery UI & Bootstrap
 
 Hello there, and welcome to this assignment where you'll be making a clone
@@ -21,7 +32,3 @@ create boards, lists and cards for handling basic planning.
 2. Copy the contents of `public` only, and upload that to your Binero-site into the `public_html` folder.
 3. Browse to your deployed site.
 4. Relax, and be proud.
-
-AND THE LINK IIIIIIIS:
-
-trello.mohamedaboudabous.chas.academy
