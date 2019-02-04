@@ -7,6 +7,20 @@ body {
   color: #4d4d4d;
 }
 
+.ruta { 
+  border: 3px solid peachpuff;
+  padding: 20px;
+  vertical-align: center;
+}
+
+.interesting {
+  cursor: pointer;
+}
+
+.newColor {
+  background-color: red;
+}
+
 a {
   color: #838c91;
 }
@@ -175,6 +189,18 @@ input {
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;
+}
+
+
+.datepicker:hover {
+  border-style: solid;
+  cursor: pointer;
+  border-color: blue;
+}
+
+.listTitle {
+  border-style: solid;
+  border-color: blue;
 }
 
 .button.primary {

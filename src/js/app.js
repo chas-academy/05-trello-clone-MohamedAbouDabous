@@ -25,6 +25,7 @@ const jtrello = (function($) {
     DOM.$columns = $(".column");
     DOM.$lists = $(".list");
     DOM.$cards = $(".card");
+    DOM.$body = $("body");
     DOM.$cardDialog = $(".card-creation-dialog")
 
     DOM.$newListButton = $("button#new-list");
@@ -54,8 +55,14 @@ const jtrello = (function($) {
     DOM.$board.on("submit", "form.new-card", createCard);
     DOM.$board.on("click", ".card > button.delete", deleteCard);
     DOM.$listDialog.on("click", "form.new.card", createCard);
+  }
 
-    // DOM.$createDialogs.on("click", cards);
+  function widget() {
+    $(".interesting").click(function() {
+      $("#widget").dialog({
+        modal: true
+      });
+    });
   }
 
   function toggleDialog() {
@@ -103,9 +110,7 @@ const jtrello = (function($) {
   }
 
   /* =========== Metoder för att hantera kort i listor nedan =========== */
-  function openCardDialog() {
 
-  }
 
   function createCard(event) {
     event.preventDefault();
@@ -135,6 +140,9 @@ const jtrello = (function($) {
     $(".board").sortable();
   
   }
+
+
+
   // Metod för att rita ut element i DOM:en
   function render() {}
 
@@ -149,6 +157,7 @@ const jtrello = (function($) {
     createDialogs();
     dragAndDrop();
     bindEvents();
+    widget();
   }
 
   // All kod här
