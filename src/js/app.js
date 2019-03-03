@@ -3,7 +3,6 @@ import $ from "jquery";
 require("webpack-jquery-ui");
 import 'jquery-ui/themes/base/all.css';
 import "../css/styles.css";
-import { create, Domain } from "domain";
 
 /**
  * jtrello
@@ -31,8 +30,14 @@ const jtrello = (function($) {
     DOM.$newListButton = $("button#new-list");
     DOM.$deleteListButton = $(".list-header > button.delete");
 
+    DOM.$widgetButton = $('#widget');
+
     DOM.$newCardForm = $("form.new-card");
     DOM.$deleteCardButton = $(".card > button.delete");
+  }
+
+  function theWidget() {
+    $('#dialog').dialog();
   }
 
   function createTabs() {
@@ -55,14 +60,7 @@ const jtrello = (function($) {
     DOM.$board.on("submit", "form.new-card", createCard);
     DOM.$board.on("click", ".card > button.delete", deleteCard);
     DOM.$listDialog.on("click", "form.new.card", createCard);
-  }
-
-  function widget() {
-    $(".interesting").click(function() {
-      $("#widget").dialog({
-        modal: true
-      });
-    });
+    DOM.$widgetButton.on("click", theWidget);
   }
 
   function toggleDialog() {
@@ -128,6 +126,8 @@ const jtrello = (function($) {
     cardTitleInput.val("");
   }
 
+
+  
   function deleteCard() {
     $(this).closest(".card").toggle("explode");
   }
@@ -140,8 +140,6 @@ const jtrello = (function($) {
     $(".board").sortable();
   
   }
-
-
 
   // Metod för att rita ut element i DOM:en
   function render() {}
@@ -157,7 +155,6 @@ const jtrello = (function($) {
     createDialogs();
     dragAndDrop();
     bindEvents();
-    widget();
   }
 
   // All kod här

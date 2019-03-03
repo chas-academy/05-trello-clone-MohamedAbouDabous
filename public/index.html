@@ -72,21 +72,35 @@
             <button id="new-list" class="button">Add new list</button>
         </div>
     </div>
-
+    
+                
     <div id="list-creation-dialog" title="Create new list" style="height: 40px">
+
         <form class="new-list" id="tabs">
             <ul>
               <li><a href="#fragment-1">List title</a></li>
               <li><a href="#fragment-2">List due date</a></li>
             </ul>
             <div id="fragment-1">
-                <input type="text" name="title" placeholder="List title" />
+                <input class="listTitle" type="text" name="title" placeholder="List title" />
                 <button class="button primary" type="submit">Save</button>
             </div>
             <div id="fragment-2">
-                <input class="datepicker" type="text" name="due" placeholder="Date" /> 
+                <input class="datepicker" type="text" name="due" placeholder="Click here to choose date" /> 
             </div>
         </form>
+    </div>
+
+    <div class="ruta" title="En intressant ruta">
+    <button class="interesting">Klicka här för lite info :)</button>
+    </div>
+
+    <div id="widget" title="En trevlig ruta" class="ruta">
+        <h1>GET TROLLED</h1>
+        <img src="/src/kappa.png" alt="kappa">
+        <h6>ps... starta om sidan. To escape me</h6>
+    </div>
+
     </div>
 <script type="text/javascript" src="./bundle.js"></script></body>
 </html>

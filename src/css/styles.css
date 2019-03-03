@@ -150,22 +150,6 @@ input {
   z-index: 50;
 }
 
-.ui-dialog .ui-dialog-titlebar {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.ui-dialog .ui-dialog-titlebar-close {
-  display: none;
-}
-
-.ui-dialog input {
-  min-height: 24px;
-}
-
-.ui-dialog button {
-  margin-right: 8px;
-}
 
 .ui-button,
 .button {
