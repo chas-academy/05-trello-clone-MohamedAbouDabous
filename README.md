@@ -1,7 +1,7 @@
 
 AND THE LINK IIIIIIIS:
 
-trello.mohamedaboudabous.chas.academy
+http://trello.mohamedaboudabous.chas.academy.preview.binero.se/
 
 
 
