@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jQuery UI - Trello Clone (yay!)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
 </head>
 <body>
+
     <div class="board">
         <div class="column">
             <div class="list">
@@ -71,9 +74,11 @@
         <div class="column">
             <button id="new-list" class="button">Add new list</button>
         </div>
+        <div class="column" id="widget">
+            <button>A different font</button>
+          </div>
     </div>
-    
-                
+
     <div id="list-creation-dialog" title="Create new list" style="height: 40px">
 
         <form class="new-list" id="tabs">
@@ -89,18 +94,6 @@
                 <input class="datepicker" type="text" name="due" placeholder="Click here to choose date" /> 
             </div>
         </form>
-    </div>
-
-    <div class="ruta" title="En intressant ruta">
-    <button class="interesting">Klicka här för lite info :)</button>
-    </div>
-
-    <div id="widget" title="En trevlig ruta" class="ruta">
-        <h1>GET TROLLED</h1>
-        <img src="/src/kappa.png" alt="kappa">
-        <h6>ps... starta om sidan. To escape me</h6>
-    </div>
-
-    </div>
+        
 <script type="text/javascript" src="./bundle.js"></script></body>
 </html>

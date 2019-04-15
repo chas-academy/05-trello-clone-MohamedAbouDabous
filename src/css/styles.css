@@ -150,8 +150,6 @@ input {
   z-index: 50;
 }
 
-
-.ui-button,
 .button {
   display: inline-flex;
   overflow: hidden;
@@ -204,4 +202,8 @@ input {
   cursor: grabbing;
   box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.3), 0px 0px 1px rgba(0, 0, 0, 0.5);
   transform: rotate(4deg);
+}
+
+.new-font{
+  font-family: fantasy !important;
 }

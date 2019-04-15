@@ -37,7 +37,7 @@ const jtrello = (function($) {
   }
 
   function theWidget() {
-    $('#dialog').dialog();
+      $("body").addClass("new-font"); //to add the class on click
   }
 
   function createTabs() {
